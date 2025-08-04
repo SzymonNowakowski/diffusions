@@ -20,18 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m pip install --upgrade pip
 
 # Install ML/data/image libraries for diffusion work
-RUN pip install --upgrade \
-    einops \
-    tqdm \
-    numpy \
-    pandas \
-    matplotlib \
-    seaborn \
-    imageio \
-    opencv-python-headless \
-    scikit-learn \
-    scikit-image
-
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip && pip install -r /tmp/requirements.txt
 
 # Default shell
 CMD ["/bin/bash"]
